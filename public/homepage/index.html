@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>LRC Home</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
+
+  <body>
+    <!-- Sider Menu Bar start -->
+      <input type="checkbox" id="check">
+      <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+      </label>
+      <div class="sidebar">
+        <header>LRC Logo</header>
+        <ul>
+          <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+          <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+          <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+          <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+          <li><a href="#"><i class="fas fa-calendar-week"></i>Appointments</a></li>
+          <li><a href="#"><i class="fas fa-stream"></i>Sitemap</a></li>
+        </ul>
+      </div>
+      <section>
+        <div class="img_slider">
+          <div class="sliders">
+            <!--radio buttons-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <!--radio buttons end-->
+            <!--slide images-->
+            <div class="slide first">
+              <img src="assets/img/slide1.png" alt="">
+            </div>
+            <div class="slide">
+              <img src="assets/img/slide2.png" alt="">
+            </div>
+            <div class="slide">
+              <img src="assets/img/slide3.png" alt="">
+            </div>
+            <div class="slide">
+              <img src="assets/img/slide4.png" alt="">
+            </div>
+            <!--slide images end-->
+            <!--auto navigation start-->
+            <div class="navigation-auto">
+              <div class="auto-btn1"></div>
+              <div class="auto-btn2"></div>
+              <div class="auto-btn3"></div>
+              <div class="auto-btn4"></div>
+            </div>
+            <!--auto navigation end-->
+          </div>
+          <!--manual navigation start-->
+          <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+          </div>
+          <!--manual navigation end-->
+
+        </div>
+      </section>
+    <script type="text/javascript">
+      var counter 1;
+      setInterval(function(){
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if(counter > 4){
+          counter = 1;
+        }
+      }, 5000);
+    </script>
+  </body>
+</html>
