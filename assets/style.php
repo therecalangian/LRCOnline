@@ -17,13 +17,29 @@
     font-size: 0.9rem !important;
 }
 
+
 .header {
     background-color: #2d3436;
     background-image: linear-gradient(to right,#f7f1e3 0%, #aaa69d 100%);
 }
 
+
+/* Add Events*/
+.form-div{
+  margin-top: 50px;
+  padding-top: 10px;
+}
+
+#displayHolder{
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+  border-radius: 10%
+}
+
 .section-1 {
     background: #f5f5f5;
+    
 }
 
 .section-2 {
