@@ -1,9 +1,12 @@
-<?php include 'processForm.php';
+<?php 
+   include('db_connection.php');
+   session_start();
+   $con = mysqli_connect("localhost","root","","lrc_online");
+?>
 
-$sql = "SELECT * FROM events";
-$result = mysqli_query($conn, $sql);
-$events = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+<?php
+//include auth_session.php file on all user panel pages
+include("auth_session.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,28 +17,19 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <title>LRC Home</title>
     <link rel="stylesheet" href="assets/style.php"/>
     <!-- for header-->
+
+    <!--FONTS-->
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/gidole-regular" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/bebas" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/carlito" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hussar-bold" type="text/css"/>
+
+    
     <!-- Bootstrap 4-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="bootstrap-css">
-	
-	<!-- for footer -->
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
-	
-	<!-- fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
-
-	<!-- fonts - icomoon -->
-	<link rel="stylesheet" href="assets/fonts/icomoon/style.css">
-	
-	<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	
     <style>
     .button {
       border-radius: 44px;
@@ -75,10 +69,78 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
       opacity: 1;
       right: 0;
     }
+    
+
+
+    .container_ap {
+      padding: 1%;
+      margin: 1%;
+      width: 65%;
+      background-color: #efecec;
+      border-radius: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #mySelect{
+      font-family: Bebas;
+      border-radius: 5px;
+      font-size: 17px;
+    }
+
+    .pending {
+      background-color: #f3aa2c;
+      color: #ffffff;
+    }
+
+    .done {
+      background-color: #014421;
+      color: #ffffff;
+    }
+
+    #textBox {
+        font-size: 15px;
+        font-family: GidoleRegular;
+    }
+
+    table {
+      font-family: GidoleRegular;
+      width: 100%;
+    }
+
+    td {
+      padding-left: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 15px;
+    }
+
+    #myInput {
+      float: right;
+      margin-right: 10%;
+    }
+
+
     </style>
-  <body>
+
+    <script>
+      $(document).ready(function()
+      {
+        $("#myInput").on("keyup", function() 
+        {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function() 
+          {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
+
+<body>
     <!--navigation start-->
-   
+    <!-- Demo header-->
+
 
 <!-- Sticky navbar-->
 <header class="header sticky-top" >
@@ -88,13 +150,13 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="index_admin.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about_admin.php">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="schedule.php">Subjects</a></li>
-					<li class="nav-item"><a class="nav-link" href="appointments.php">Appointments</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="appointments.php">Appointments <span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="services_admin.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact_admin.php">Contact</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Profile</a>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Profile</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
@@ -108,71 +170,87 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </header>
 
 
-<!-- Add Event functionality start-->
-<div class="container">
-  <div class="row">
-    <div class="col-4 offset-md-4 shadow p-3 mb-5 bg-white rounded form-div">
-      <form action="index.php" enctype="multipart/form-data" method="post">
-        <h3 class="text-center"> Add Event </h3>
-
-        <?php if(!empty($msg)):?>
-          <div class="alert <?php echo $css_class; ?>">
-            <?php echo $msg; ?>
-          </div>
-        <?php endif; ?>
-
-
-        <div class="form-group text-center">
-          <img src="assets/img/img_placeholder.jpg" onclick="triggerClick()" id="displayHolder"/>
-          <label for="latestEvent"> Latest Event </label>
-          <input type="file" name="latestEvent" onchange="displayImage(this)" id="latestEvent" style="display: none;">
-        </div>
-        <div class="form-group">
-          <label for="eventTitle"> Title </label>
-          <textarea name="eventTitle" id="eventTitle" class="form-control" maxlength="40"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="caption"> Caption </label>
-          <textarea name="caption" id="caption" class="form-control" maxlength="120"></textarea>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-warning btn-block" name="save-event">Add Event</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-
-</div>
-
-<script src="script/script.js"></script>
+<?php 
+  if(isset($_GET['status']) && $_GET['name'])
+  {
+    $stat = $_GET['status'];
+    $n = $_GET['name'];
+    $sql="UPDATE form SET status='$stat' WHERE name='$n'"; 
+    $con->query($sql);
+  } 
+?>
 
 <!-- Demo content-->
-<?php foreach($events as $event): ?>
 <section class="py-5 section-1">
-    <div class="container py-5 text-center">
-        <div class="row">
-            <div class="col-lg-4 mx-auto" >
-              <img width="300px" src="uploads/<?php echo $event['latestEvent'];?>" />
-            </div>
-            <div class="col-lg-8 mx-auto" style="margin-top: 35px;">
-                <h2><?php echo $event['eventTitle']; ?></h2>
-                <p class="text-muted lead"><?php echo $event['caption']; ?></p>
-            </div>
-        </div>
-    </div>
-</section>
-<?php endforeach; ?>
+  <p>
+    <input type="text" id="myInput" placeholder="Filter" title="Type in a name">
+  </p>
+  <br>
 
-<section class="py-5 section-2">
-    <div class="container py-5 text-center">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2>Demo section 2</h2>
-                <p class="text-muted lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-            </div>
-        </div>
-    </div>
+<?php
+  $sql = "SELECT * FROM form ORDER BY status DESC";
+  
+  $result = mysqli_query($db, $sql); 
+  while ($row = mysqli_fetch_array($result))
+  {
+    $subject = $row['subject'];
+    $name = $row['name'];
+    $year = $row['year_level'];
+    $course = $row['course'];
+    $email = $row['email'];
+    $mobile = $row['mobile_number'];
+    $topic = $row['topic'];
+    $date = $row['date_appoint'];
+    $time = $row['time_appoint'];
+    $status = $row['status'];
+    $date_ap = date("M j, Y", strtotime($date));
+    $time_ap = date("g:i A", strtotime($time));
+    $choice1 = 'pending';
+    $choice2 = 'done';
+?>
+
+<p>
+  <form action="" method="POST" id="myForm">
+    <table id="myTable" class="container_ap">
+      <colgroup>
+        <col span="1" style="width: 30%; border-right: 3px solid #a6a6a6;">
+        <col span="1" style="width: 20%; padding: 1%">
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 10%;">
+      </colgroup>
+
+      <tbody>
+        <tr>
+          <td rowspan="4">
+            <?php echo $name; ?><br>
+            <?php echo $year . '-' . $course;  ?><br>
+            <?php echo $email; ?><br>
+            <?php echo $mobile; ?>
+          </td>
+          <td rowspan="4">
+            <?php echo $subject; ?><br>
+            <?php echo $date_ap; ?><br>
+            <?php echo $time_ap; ?>
+          </td>
+          <td rowspan="4">
+            Topics:<br>
+            <?php echo $topic; ?>
+          </td>
+          <td rowspan="4">
+            <select name="status" class = "<?php echo $row['status']; ?>" id="mySelect" onchange="location = this.value;">
+                <option selected style="display:none;"><?php echo $status; ?></option>
+                <option class="sel" value="appointments.php?status=pending&name=<?php echo $name; ?>" <?php if ($row['status'] == 'pending') { ?>style="display:none;" <?php }; ?>><?php echo $choice1; ?></option>
+                <option class="sel" value="appointments.php?status=done&name=<?php echo $name; ?>" <?php if ($row['status'] == 'done') { ?>style="display:none;" <?php }; ?>><?php echo $choice2; ?></option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</p>
+
+<?php } ?>
+
 </section>
 
 
@@ -199,9 +277,8 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
   <!-- HEADER END -->
 
   </body>
-  
   <!-- FOOTER START -->
-	<footer class="footer-16371">
+  <footer class="footer-16371">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-9 text-center">
@@ -210,8 +287,8 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
             </div>
             <ul class="list-unstyled nav-links mb-5">
               <li><a href="about_admin.php">About</a></li>
-			  <li><a href="subjects.php">Subjects</a></li>
-			  <li><a href="appointments.php">Appointments</a></li>
+        <li><a href="subjects.php">Subjects</a></li>
+        <li><a href="appointments.php">Appointments</a></li>
               <li><a href="services_admin.php">Services</a></li>
               <li><a href="contact_admin.php">Contact</a></li>
             </ul>
@@ -221,7 +298,7 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
               <ul class="list-unstyled">
                 <li class="fb"><a href="https://www.facebook.com/upmlrc"><span class="icon-facebook"></span></a></li>
                 <li class="pin"><a href="contact.php"><span class="icon-phone"></span></a></li>
-				<li class="tw"><a href="contact.php"><span class="icon-envelope"></span></a></li>
+        <li class="tw"><a href="contact.php"><span class="icon-envelope"></span></a></li>
               </ul>
             </div>
 
@@ -234,10 +311,10 @@ $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
         </div>
       </div>
     </footer>
-	
+  
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	
+  
 <!-- FOOTER END -->
 </html>
