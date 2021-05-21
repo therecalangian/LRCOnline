@@ -3,7 +3,7 @@
    session_start();
    
    $user_check = $_SESSION['addToDatabase'];
-    $user_check = $_SESSION['addSubjToDatabase'];
+   $user_check = $_SESSION['addSubjToDatabase'];
    
    $ses_sql = mysqli_query($db,"select username from admin where username = '$user_check' ");
    
