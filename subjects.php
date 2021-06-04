@@ -243,8 +243,8 @@ include("auth_session.php");
                     <li class="nav-item"><a class="nav-link" href="contact_admin.php">Contact</a></li>
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Profile</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="profile.php">Settings</a>
-                        <div class="dropdown-divider"></div>
+                        <!--<a class="dropdown-item" href="profile.php">Settings</a>
+                        <div class="dropdown-divider"></div>-->
                           <a class="dropdown-item" href="logout.php">Logout</a>
                       </div>
                     </li>
@@ -278,7 +278,7 @@ if(mysqli_num_rows($result) > 0 ){
 </center>
 
 <center>
-  <center><button class="buttonJu" id="myBtn1">REMOVE SUBJECT</button>
+  <!--<center><button class="buttonJu" id="myBtn1">REMOVE SUBJECT</button>-->
   <button class="buttonJu" id="myBtn">ADD SUBJECT</button></center>
  <br>
 

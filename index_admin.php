@@ -90,7 +90,7 @@ include("auth_session.php");
 <header class="header sticky-top" >
     <nav class="navbar navbar-expand-lg navbar-light py-3 shadow-sm" style="background-color: #b33939;">
         <div class="container"><a class="navbar-brand" href="#">
-            <strong class="h6 mb-0 font-weight-bold text-uppercase text-white">Learning Resource Center</strong></a>
+            <strong class="h6 mb-0 font-weight-bold text-uppercase">Learning Resource Center</strong></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
@@ -102,8 +102,8 @@ include("auth_session.php");
                     <li class="nav-item"><a class="nav-link" href="contact_admin.php">Contact</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Profile</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="profile.php">Settings</a>
-                        <div class="dropdown-divider"></div>
+                        <!--<a class="dropdown-item" href="profile.php">Settings</a>
+                        <div class="dropdown-divider"></div>-->
                           <a class="dropdown-item" href="logout.php">Logout</a>
                       </div>
                     </li>
@@ -154,7 +154,7 @@ include("auth_session.php");
 <script src="script/script.js"></script>
 
 <!-- Demo content-->
-<?php foreach($events as $event): ?>
+<?php foreach(array_reverse($events) as $event): ?>
 <section class="py-5 section-1">
     <div class="container py-5 text-center">
         <div class="row">

@@ -169,8 +169,8 @@ include("auth_session.php");
                     <li class="nav-item"><a class="nav-link" href="contact_admin.php">Contact</a></li>
           <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Profile</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="profile.php">Settings</a>
-                        <div class="dropdown-divider"></div>
+                        <!--<a class="dropdown-item" href="profile.php">Settings</a>
+                        <div class="dropdown-divider"></div>-->
                           <a class="dropdown-item" href="logout.php">Logout</a>
                       </div>
                     </li>
@@ -182,11 +182,11 @@ include("auth_session.php");
 
 
 <?php 
-  if(isset($_GET['status']) && $_GET['name'])
+  if(isset($_GET['status']) && $_GET['id'])
   {
     $stat = $_GET['status'];
-    $n = $_GET['name'];
-    $sql="UPDATE form SET status='$stat' WHERE name='$n'"; 
+    $n = $_GET['id'];
+    $sql="UPDATE form SET status='$stat' WHERE id='$n'"; 
     $con->query($sql);
   } 
 ?>
@@ -204,6 +204,7 @@ include("auth_session.php");
   $result = mysqli_query($db, $sql); 
   while ($row = mysqli_fetch_array($result))
   {
+    $id = $row['id'];
     $subject = $row['subject'];
     $name = $row['name'];
     $year = $row['year_level'];
@@ -250,8 +251,8 @@ include("auth_session.php");
           <td rowspan="4">
             <select name="status" class = "<?php echo $row['status']; ?>" id="mySelect" onchange="location = this.value;">
                 <option selected style="display:none;"><?php echo $status; ?></option>
-                <option class="sel" value="appointments.php?status=pending&name=<?php echo $name; ?>" <?php if ($row['status'] == 'pending') { ?>style="display:none;" <?php }; ?>><?php echo $choice1; ?></option>
-                <option class="sel" value="appointments.php?status=done&name=<?php echo $name; ?>" <?php if ($row['status'] == 'done') { ?>style="display:none;" <?php }; ?>><?php echo $choice2; ?></option>
+                <option class="sel" value="appointments.php?status=pending&id=<?php echo $id; ?>" <?php if ($row['status'] == 'pending') { ?>style="display:none;" <?php }; ?>><?php echo $choice1; ?></option>
+                <option class="sel" value="appointments.php?status=done&id=<?php echo $id; ?>" <?php if ($row['status'] == 'done') { ?>style="display:none;" <?php }; ?>><?php echo $choice2; ?></option>
             </select>
           </td>
         </tr>
