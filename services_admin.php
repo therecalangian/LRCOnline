@@ -144,7 +144,6 @@ include("auth_session.php");
                 <div class="col-lg-6 col-md-10">
                     <div class="section-title text-center pb-10">
                         <h1 class="title font-weight-bold">LRC SERVICES</h1>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
                     </div> <!-- row -->
                 </div>
             </div> <!-- row -->

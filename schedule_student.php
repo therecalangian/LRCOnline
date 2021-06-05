@@ -254,7 +254,7 @@
     </div>
 </div>
 									
-           >
+           
 </section>
 
   <!-- HEADER START -
