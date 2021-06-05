@@ -43,7 +43,10 @@
 
 .section-2 {
     background: #F1F1F1;
+<<<<<<< HEAD
     height: 700px;
+=======
+>>>>>>> d8a065149338a0c972412ab198225fa67c49ba63
 }
 
 .section-3 {
